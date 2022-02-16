@@ -1,7 +1,8 @@
 sales_agent_invoices.sql
 
-SELECT i.*
-  c.id as CustomerId,
-  e.id as EmployeeId
-From invoice as I
-  JOIN Customer as c on
+SELECT e.FirstName, e.LastName, i.InvoiceId
+FROM Employee e
+JOIN Customer c ON c.SupportRepId = e.EmployeeId
+JOIN Invoice I ON i.CustomerId = c.CustomerId
+group by c.CustomerId
+ORDER bY e.LastName
